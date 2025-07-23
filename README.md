@@ -4,8 +4,14 @@ A full-stack web application for booking shared resources with conflict detectio
 
 ## 🚀 Live Demo
 
-**Frontend**: [https://mini-booking-app-pearl.vercel.app/](https://mini-booking-app-pearl.vercel.app/)
-**Backend**: [https://booking-app-eight-ivory.vercel.app/](https://booking-app-eight-ivory.vercel.app/)
+- [Front-end](https://mini-booking-app-pearl.vercel.app/)
+- [Back-end](https://booking-app-eight-ivory.vercel.app)
+
+## 🚀 Github Repo 
+
+- [Front-end](https://github.com/Farsit-007/booking-system-frontend)
+- [Back-end](https://github.com/Farsit-007/booking-system-backend)
+
 ## 📋 Features
 
 ### Core Features
@@ -135,7 +141,7 @@ npm run dev
 yarn dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to view the application.
+Visit [https://mini-booking-app-pearl.vercel.app/](https://mini-booking-app-pearl.vercel.app/) to view the application.
 
 ## 📖 API Documentation
 
