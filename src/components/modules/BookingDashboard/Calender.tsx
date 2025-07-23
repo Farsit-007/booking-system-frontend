@@ -1,6 +1,6 @@
 "use client";
 
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -71,9 +71,21 @@ export function BookingCalendar() {
                 {bookings.map((booking) => (
                   <div key={booking.id} className="border rounded-lg p-3">
                     <p>Booked Slot</p>
-                    <div className="text-sm">
-                      {format(parseISO(booking.startTime), "h:mm a")} -{" "}
-                      {format(parseISO(booking.endTime), "h:mm a")}
+                    <div className="text-sm text-gray-600">
+                      {new Date(booking.startTime).toLocaleTimeString("en-US", {
+                        timeZone: "Asia/Dhaka",
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: true,
+                      })}{" "}
+                      -{" "}
+                      {new Date(booking.endTime).toLocaleTimeString("en-US", {
+                        timeZone: "Asia/Dhaka",
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: true,
+                      })}{" "}
+                      <span className="text-xs text-gray-500">BST</span>
                     </div>
                   </div>
                 ))}

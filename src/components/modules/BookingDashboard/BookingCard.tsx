@@ -23,24 +23,30 @@ function getBookingStatus(booking: Booking): BookingStatus {
 }
 
 function formatDateTimeRange(startTime: string, endTime: string): string {
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    month: "short",
+    day: "numeric",
+    timeZone: "Asia/Dhaka"
+  };
+
+  const timeOptions: Intl.DateTimeFormatOptions = {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Asia/Dhaka"
+  };
+
   const start = new Date(startTime);
   const end = new Date(endTime);
 
-  if (isNaN(start.getTime()) || isNaN(end.getTime())) return "Invalid time";
+  if (isNaN(start.getTime())) return "Invalid start time";
+  if (isNaN(end.getTime())) return "Invalid end time";
 
-  const dateLabel = start.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-  });
+  const dateLabel = start.toLocaleDateString("en-US", dateOptions);
+  const startTimeLabel = start.toLocaleTimeString("en-US", timeOptions);
+  const endTimeLabel = end.toLocaleTimeString("en-US", timeOptions);
 
-  const formatTime = (date: Date) =>
-    date.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-
-  return `${dateLabel} • ${formatTime(start)} - ${formatTime(end)}`;
+  return `${dateLabel} • ${startTimeLabel} - ${endTimeLabel}`;
 }
 
 function formatDuration(startTime: string, endTime: string): string {

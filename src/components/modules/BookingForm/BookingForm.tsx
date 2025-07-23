@@ -52,8 +52,16 @@ export function BookingForm() {
   } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const payload = {
+      ...data,
+      startTime: new Date(data.startTime).toISOString(),
+      endTime: new Date(data.endTime).toISOString(),
+    };
+
+    console.log(payload);
+
     try {
-      const res = await createBookings(data);
+      const res = await createBookings(payload);
       if (res?.success) {
         toast.success("Booking created successfully!");
         reset();
@@ -141,7 +149,7 @@ export function BookingForm() {
                     <FormControl>
                       <Input
                         type="datetime-local"
-                        min={new Date().toISOString().slice(0, 16)}
+                       min={new Date(Date.now() + 1 * 60 * 1000).toISOString().slice(0, 16)}
                         {...field}
                       />
                     </FormControl>
@@ -161,7 +169,7 @@ export function BookingForm() {
                     <FormControl>
                       <Input
                         type="datetime-local"
-                        min={new Date().toISOString().slice(0, 16)}
+                       min={new Date(Date.now() + 1 * 60 * 1000).toISOString().slice(0, 16)}
                         {...field}
                       />
                     </FormControl>
@@ -171,7 +179,11 @@ export function BookingForm() {
               />
             </div>
 
-            <Button type="submit" className="w-full cursor-pointer" disabled={isSubmitting}>
+            <Button
+              type="submit"
+              className="w-full cursor-pointer"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
